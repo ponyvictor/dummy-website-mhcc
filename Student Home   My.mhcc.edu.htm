@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Language" content="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	Student Home | My.mhcc.edu
+</title><!-- base href="https://my.mhcc.edu/ICS/" -->
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script async="" src="Student%20Home%20%20%20My.mhcc.edu_files/analytics.js"></script><script type="text/javascript">
+    window.jenzabar = {};
+    window.userSettings = {
+        culture:    'en-US',
+        language:   'en',
+        dateFormat: 'm/d/yy'
+    };
+    jenzabar.userSettings = window.userSettings;
+</script>
+
+<!-- BEGIN Html Head Elements -->
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/jquery.js"></script>
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/handlebars.js"></script>
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="Student%20Home%20%20%20My.mhcc.edu_files/jquery-ui.css">
+<link href="Student%20Home%20%20%20My.mhcc.edu_files/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="Student%20Home%20%20%20My.mhcc.edu_files/css.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/ProxyLogin.js"></script>
+			<link type="text/css" rel="stylesheet" href="Student%20Home%20%20%20My.mhcc.edu_files/ProxyLoginStyles.css">
+<script>jQuery.browser = jQuery.browser || { msie: "ActiveXObject" in window };</script>
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/moxman.js"></script>
+<!-- END Html Head Elements -->
+
+<link href="Student%20Home%20%20%20My.mhcc.edu_files/site-bundle.css" rel="stylesheet">
+
+
+<link href="Student%20Home%20%20%20My.mhcc.edu_files/AMCStyle.css" type="text/css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" media="print" href="Student%20Home%20%20%20My.mhcc.edu_files/print.css">
+
+
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/jcsfl.js"></script>
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/site-bundle.js"></script>
+
+
+<!-- BEGIN Html Head Elements After JICS JS Framework -->
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/LayoutManager.js"></script>
+<!-- END Html Head Elements After JICS JS Framework -->
+
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/Globalization.txt"></script>
+<!--[if IE]>
+<style type="text/css" media="all">@import url( UI/Common/Styles/IEOnly.css );</style>
+<script type="text/javascript" language="JavaScript" src="UI/Common/Scripts/IEOnly.js"></SCRIPT>
+<![endif]-->
+
+<script type="text/javascript">
+    window.Portal =
+    {
+        url: document.getElementsByTagName("base")[0].href,
+        uid: "d4ce6921-6f03-4e42-9077-6f1e1f206918",
+        timeout: 45,
+        SessionMonitor: JCSL.JICS.get_session_monitor()
+        ,debug_mode:		true
+    };
+</script>
+
+<script type="text/javascript">
+    jQuery(function () {
+        jenzabar.framework.timeoutWarning.create();
+    });
+</script>
+ 
+
+<link rel="Shortcut Icon" href="https://my.mhcc.edu/ics/clientconfig/HtmlContent/favicon.ico" type="image/x-icon">
+<style id="customHead_custom" type="text/css" media="all">@import url( /ics/clientconfig/HtmlContent/custom.css?v=1 );</style>
+<script language="JavaScript">
+$(document).ready(function(){
+	//only allow submit buttons to submit the mainform a single time
+	$("#MAINFORM").submit(function(event){
+		$(this).find('[name="btnLogin"]').click(function(event){
+			event.preventDefault();
+		});	
+	});
+	
+	//removed the student program from the register for classes portlet
+	//$("div[id$='divMain'] > div.WhiteBordered").hide();
+	$("div[id$='CourseSchedules'] > div > div > div.WhiteBordered").hide();
+	
+	//copy the add button from the register for classes portlet to also be at the top of the list
+	$("input[id$='btnAddCourse']").clone(true).insertAfter("div[id$='divMain'] > table:nth-child(2)");
+	
+	//add instructions for registration agreement section
+	$("<p style='background-color:yellow'>You must complete the following before you will be allowed to register:</p>").insertBefore("div[id$='divShowForRegAgreement']");	
+	
+	//resize paystub to full size
+	$("iframe#pg0_V_frame").height(1500);
+	
+	//replace the department code from the "my class schedule" portlet with the location
+	var loc1 = $("tbody > tr > td.BorderLeftRightBottom").eq(1).html();
+	var loc2 = $("tbody > tr > td.BorderLeftRightBottom").eq(2).html();
+
+	$("#pg0_V_lblDepartmentText").html("Location:");
+	$("#pg0_V_lblDepartmentValue").html(loc1);
+	if(loc2 && loc2.length)
+	{
+		$("#pg0_V_lblDepartmentValue").append("<br />" + loc2);
+	}
+	
+	//fix for course search: hitting enter in the textboxes should submit the form. It is not because the name of the button is being passed to getelementbyid(). Change to the ID of the button
+	$("#pg0_V_tabSearch_txtCourseRestrictor").keypress(function(){if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('pg0_V_tabSearch_btnSearch').click();return false;}} else {return true};});
+	$("#pg0_V_tabSearch_txtTitleRestrictor").keypress(function(){if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('pg0_V_tabSearch_btnSearch').click();return false;}} else {return true};});
+	
+	//remove a users ability to edit their saints email address i nthe portal
+	$("span:contains('MHCC Student Email:')").closest('td').next().next().find('input').hide();
+	
+	
+	//Quick and dirty fix for participation attendance link still trying to access nbox after move to cxprod 9-30-16
+$("a[href='https://my.mhcc.edu/ics/Portlets/CRM/CXWebLinks/Portlet.CXFacultyMain/CXFacultyMainPage.aspx?DestURL=http://nbox.mhcc.edu:9040/cgi-bin/faculty/attend.cgi']").attr('href', 'https://my.mhcc.edu/ics/Portlets/CRM/CXWebLinks/Portlet.CXFacultyMain/CXFacultyMainPage.aspx?DestURL=http://cxprod.mhcc.edu:9040/cgi-bin/faculty/attend.cgi')
+
+	//add instructions to the Offic hour portlet for Faculty
+	$("table[id$=OfficeHoursGrid]").append("<tbody class='gbody'><tr><td>Click <a href='https://my.mhcc.edu/ICS/Portlets/ICS/Handoutportlet/viewhandler.ashx?handout_id=2892d4fe-5633-453e-a5b9-0f74ce09e4e2' target='_blank'>here</a> for instructions on entering office hours.</td></tr></tbody>");
+});		
+
+
+
+// Password length validation: check password length before submitting password update form
+$( document ).ready(function() {
+	$("#CP_V_SaveButton").removeAttr("onclick").attr("onclick", "javascript:return true");
+	$("#CP_V_txtPassword").removeAttr("maxlength");
+	$("#CP_V_txtConfirmPassword").removeAttr("maxlength");
+	
+	try {
+		document.getElementById("CP_V_SaveButton").addEventListener("click", function(event){
+			if (!validatePasswordLength())
+			{
+				alert("Your new password must be a total of 8 characters in length. Please ensure your new password is 8 characters long and try again.");
+				event.preventDefault();
+			}
+		});
+	}
+	catch (e) {
+		void 0;
+	}
+});
+function validatePasswordLength() {
+	var passwordLength = document.getElementById('CP_V_txtPassword').value.length;
+	var passwordConfirmLength = document.getElementById('CP_V_txtConfirmPassword').value.length;
+	if ( passwordLength == 8 && passwordConfirmLength == 8 )
+	{
+		WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("CP$V$SaveButton", "", true, "", "", false, false));
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+} // end Password length validation	
+	
+</script>
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4567564-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="Student%20Home%20%20%20My.mhcc.edu_files/style.css">
+<script type="text/javascript" src="Student%20Home%20%20%20My.mhcc.edu_files/javascript.js"></script>
+
+
+</head>
+<body onload="doLoad();">
+    <div id="siteWrapper">
+    <form name="MAINFORM" method="post" action="/ICS/" id="MAINFORM" enctype="multipart/form-data" autocomplete="off">
+<div class="aspNetHidden">
+<input name="_scriptManager_HiddenField" id="_scriptManager_HiddenField" value="" type="hidden">
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__LASTFOCUS" id="__LASTFOCUS" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTYwOTQxMzMwMQ8QZGRkFgICAQ9kFggCCw9kFgJmDw8WAh4IX19Mb2FkZWRnZGQCDQ9kFgQCAQ8WAh4HVmlzaWJsZWdkAgMPFgIfAWhkAg8PFgIfAWhkAhAPZBYMAgMPFCsAAhYCHhFDdXJyZW50U2NyZWVuTmFtZQUQU3R1ZGVudCBTY2hlZHVsZWQWBgICDxYCHwFoZAIID2QWAmYPDxYCHwBnZBYEZg8WAh8BZxYCAgEPDxYCHgRUZXh0BSRDb3Vyc2UgU2NoZWR1bGUgZm9yIFBvbnlib3kgUGV0ZXJtYW5kZAICDxYCHwFnFgQCAQ8PFgIfAwUVVmlldyBTY2hlZHVsZSBEZXRhaWxzZGQCAw8WAh8BZxYCAgEPPCsACwEADxYGHghEYXRhS2V5cxYGZGRkZGRkHgxfIUl0ZW1Db3VudHMWBBYAFgAWABYAHgtfIUl0ZW1Db3VudAIEZBYEZg9kFgRmD2QWAmYPDxYCHgpDb2x1bW5TcGFuAgNkZAIBD2QWBmYPDxYCHwMFBkNvdXJzZWRkAgEPDxYCHwMFBVRpdGxlZGQCAg8PFgIfAwUFTWVldHNkZAIBD2QWCGYPZBYGZg8PFggfA2UeBFdyYXBoHg1WZXJ0aWNhbEFsaWduCyonU3lzdGVtLldlYi5VSS5XZWJDb250cm9scy5WZXJ0aWNhbEFsaWduAR4EXyFTQgKAgBhkFgICAQ8PFgQfAwUJQVJUMjYyLUUxHg9Db21tYW5kQXJndW1lbnQFHDIwMTg7V0k7QVJUMjYyO0UxO1VHMTc7VU5ERztkZAIBDw8WBh8DZR8JCysEAR8KAoCACGQWAmYPFQERUGhvdG9ncmFwaHkgSUkgICBkAgIPDxYIHwNlHwhoHwkLKwQBHwoCgIAYZBYCAgEPFgIfBgIBFgJmD2QWAmYPFQIBVA82OjEwIC0gMTA6MDAgUE1kAgEPZBYGZg8PFggfA2UfCGgfCQsrBAEfCgKAgBhkFgICAQ8PFgQfAwUIQ0gyNDItMDEfCwUbMjAxODtXSTtDSDI0MjswMTtVRzE3O1VOREc7ZGQCAQ8PFgYfA2UfCQsrBAEfCgKAgAhkFgJmDxUBF09yZ2FuaWMgQ2hlbWlzdHJ5IElJICAgZAICDw8WCB8DZR8IaB8JCysEAR8KAoCAGGQWAgIBDxYCHwYCBBYIZg9kFgJmDxUCAU0QMTA6MDAgLSAxMDo1MCBBTWQCAQ9kFgJmDxUCAU0OMjoxMCAtIDM6MDAgUE1kAgIPZBYCZg8VAgNNV0YQMTE6MDAgLSAxMTo1MCBBTWQCAw9kFgJmDxUCAU0OMzoxMCAtIDU6MDAgUE1kAgIPZBYGZg8PFggfA2UfCGgfCQsrBAEfCgKAgBhkFgICAQ8PFgQfAwUIUEgyMTItMDEfCwUbMjAxODtXSTtQSDIxMjswMTtVRzE3O1VOREc7ZGQCAQ8PFgYfA2UfCQsrBAEfCgKAgAhkFgJmDxUBI0dlbmVyYWwgUGh5c2ljcyB3aXRoIENhbGN1bHVzIElJICAgZAICDw8WCB8DZR8IaB8JCysEAR8KAoCAGGQWAgIBDxYCHwYCAhYEZg9kFgJmDxUCBE1UV0YOOTowMCAtIDk6NTAgQU1kAgEPZBYCZg8VAgFXDjI6MTAgLSA1OjAwIFBNZAIDD2QWBmYPDxYIHwNlHwhoHwkLKwQBHwoCgIAYZBYCAgEPDxYEHwMFCFdSMTIyLTA4HwsFGzIwMTg7V0k7V1IxMjI7MDg7VUcxNztVTkRHO2RkAgEPDxYGHwNlHwkLKwQBHwoCgIAIZBYCZg8VAShFbmdsaXNoIENvbXBvc2l0aW9uOiBDcml0aWNhbCBUaGlua2luZyAgZAICDw8WCB8DZR8IaB8JCysEAR8KAoCAGGQWAgIBDxYCHwYCARYCZg9kFgJmDxUCAlRSDjI6NDAgLSA0OjMwIFBNZAIKDw8WAh8BaGRkAgQPFCsAAhYCHhNFZGl0Q3VzdG9tQ29udGVudElEMqkCAAEAAAD/////AQAAAAAAAAAMAgAAAFBKZW56YWJhci5Qb3J0YWwuRnJhbWV3b3JrLCBWZXJzaW9uPTAuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49bnVsbAUBAAAAL0plbnphYmFyLlBvcnRhbC5GcmFtZXdvcmsuRGF0YS5PYmplY3RJZGVudGlmaWVyAgAAAAhtX0d1aWRJRAptX1N0cmluZ0lEAwELU3lzdGVtLkd1aWQCAAAABP3///8LU3lzdGVtLkd1aWQLAAAAAl9hAl9iAl9jAl9kAl9lAl9mAl9nAl9oAl9pAl9qAl9rAAAAAAAAAAAAAAAIBwcCAgICAgICAqwpjuoLEatKqYOzrylj8C0GBAAAAAALZBYIAgIPFgIfAWhkAgQPFgIfAWhkAggPZBYCZg8PFgIfAGdkFgQCBQ8WAh8BaGQCBw8WAh8GAgEWAmYPZBYEAgEPFgIfAwWzAzxkaXYgY2xhc3M9InBTZWN0aW9uIGNjU2VjdGlvbiI+PGRpdiBhbGlnbj0ibGVmdCI+PGRpdiBjbGFzcz0id3lzaXd5Z3RleHQiPg0KICA8cD5NSENDIG9mZmVycyBjb3Vyc2VzIGluIHRoZSBmb2xsb3dpbmcgbGVhcm5pbmcgbWFuYWdlbWVudCBzeXN0ZW1zOiA8YnIgLz4NCsKgIOKAosKgIDxzdHJvbmc+PGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vbWhjYy5ibGFja2JvYXJkLmNvbS8iPkJsYWNrYm9hcmQgTGVhcm48L2E+PC9zdHJvbmc+wqA8YnIgLz4NCsKgwqDigKLCoMKgPHN0cm9uZz5lTGVhcm5pbmc8L3N0cm9uZz4gLSBidWlsdCBpbnRvIHRoaXMgTXlNSENDIHBvcnRhbDxiciAvPg0KwqDCoMKgwqDCoMKgwqDigKLCoHlvdXIgY291cnNlcyBhcmUgbGlzdGVkIGJlbG93PGJyIC8+wqAgwqAgwqAgwqDCoDwvcD4NCjwvZGl2PjwvZGl2PjwvZGl2PmQCAw8PFgIfAWhkZAIKDw8WAh8BaGRkAgUPFCsAAmRkFggCAg8WAh8BaGQCBA8WAh8BaGQCCA9kFgJmDw8WAh8AZ2QWAgIBD2QWBAIDDxBkEBUDDFBhc3QgQ291cnNlcw9DdXJyZW50IENvdXJzZXMORnV0dXJlIENvdXJzZXMVAwEwATEBMhQrAwNnZ2cWAQIBZAIFDxYCHwFoZAIKDw8WAh8BaGRkAgYPFCsAAhYCHwwyqQIAAQAAAP////8BAAAAAAAAAAwCAAAAUEplbnphYmFyLlBvcnRhbC5GcmFtZXdvcmssIFZlcnNpb249MC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1udWxsBQEAAAAvSmVuemFiYXIuUG9ydGFsLkZyYW1ld29yay5EYXRhLk9iamVjdElkZW50aWZpZXICAAAACG1fR3VpZElECm1fU3RyaW5nSUQDAQtTeXN0ZW0uR3VpZAIAAAAE/f///wtTeXN0ZW0uR3VpZAsAAAACX2ECX2ICX2MCX2QCX2UCX2YCX2cCX2gCX2kCX2oCX2sAAAAAAAAAAAAAAAgHBwICAgICAgICWwpJmkhGZUOLhIgIv7At6wYEAAAAAAtkFggCAg8WAh8BaGQCBA8WAh8BaGQCCA9kFgJmDw8WAh8AZ2QWBAIFDxYCHwFoZAIHDxYCHwYCARYCZg9kFgQCAQ8WAh8DBfIDPGRpdiBjbGFzcz0icFNlY3Rpb24gY2NTZWN0aW9uIj48ZGl2IGFsaWduPSJsZWZ0Ij48ZGl2IGNsYXNzPSJ3eXNpd3lndGV4dCI+PHVsPg0KPGxpPjxhIHRpdGxlPSJDYWxlbmRhciBvZiBFdmVudHMiIGhyZWY9Imh0dHA6Ly93d3cubWhjYy5lZHUvQ2FsZW5kYXJvZkV2ZW50cy8jIiB0YXJnZXQ9Il9ibGFuayI+Q2FsZW5kYXLCoG9mIEV2ZW50czwvYT48L2xpPg0KPGxpPjxhIHRpdGxlPSJSZWdpc3RyYXRpb24gQ2FsZW5kYXIiIGhyZWY9Imh0dHA6Ly93d3cubWhjYy5lZHUvUmVnaXN0cmF0aW9uQ2FsZW5kYXIvIiB0YXJnZXQ9Il9ibGFuayI+UmVnaXN0cmF0aW9uIENhbGVuZGFyPC9hPjwvbGk+DQo8bGk+PGEgdGl0bGU9IkZpbmFuY2lhbCBBaWQgRGVhZGxpbmVzIiBocmVmPSJodHRwOi8vd3d3Lm1oY2MuZWR1L0FwcGx5aW5nRmluQWlkLyIgdGFyZ2V0PSJfYmxhbmsiPkZpbmFuY2lhbCBBaWQgRGVhZGxpbmVzPC9hPsKgPC9saT4NCjwvdWw+PC9kaXY+PC9kaXY+PC9kaXY+ZAIDDw8WAh8BaGRkAgoPDxYCHwFoZGQCCg8UKwACFgIfDDKpAgABAAAA/////wEAAAAAAAAADAIAAABQSmVuemFiYXIuUG9ydGFsLkZyYW1ld29yaywgVmVyc2lvbj0wLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGwFAQAAAC9KZW56YWJhci5Qb3J0YWwuRnJhbWV3b3JrLkRhdGEuT2JqZWN0SWRlbnRpZmllcgIAAAAIbV9HdWlkSUQKbV9TdHJpbmdJRAMBC1N5c3RlbS5HdWlkAgAAAAT9////C1N5c3RlbS5HdWlkCwAAAAJfYQJfYgJfYwJfZAJfZQJfZgJfZwJfaAJfaQJfagJfawAAAAAAAAAAAAAACAcHAgICAgICAgJQt1ZHax+uQLXNFrDYW4H7BgQAAAAAC2QWCAICDxYCHwFoZAIEDxYCHwFoZAIID2QWAmYPDxYCHwBnZBYEAgUPFgIfAWhkAgcPFgIfBgIBFgJmD2QWBAIBDxYCHwMFhQc8ZGl2IGNsYXNzPSJwU2VjdGlvbiBjY1NlY3Rpb24iPjxkaXYgYWxpZ249ImxlZnQiPjxkaXYgY2xhc3M9Ind5c2l3eWd0ZXh0Ij48cD5XYW50IHRvIG1ha2UgY29sbGVnZSBsZXNzIGNvbXBsaWNhdGVkPyBMZXQgTmF2aWdhdGUgaGVscCB5b3UuPC9wPg0KPHVsPg0KPGxpPkFsd2F5cyBrbm93IHdoYXQncyBuZXh0LiA8ZW0+U3RheSB1cGRhdGVkIG9uIGFwcHJvYWNoaW5nIGRlYWRsaW5lcyBvciBvdGhlciBpbXBvcnRhbnQgaW5mb3JtYXRpb24uPC9lbT48L2xpPg0KPGxpPkNyZWF0ZSB5b3VyIG93biBkZXN0aW55LiA8ZW0+RXhwbG9yZSBhY2FkZW1pYyBwcm9ncmFtcyBhbmQgY2FyZWVycyB0aGF0IHdvcmsgZm9yIHlvdSBhbmQgeW91ciBnb2Fscy48L2VtPjwvbGk+DQo8bGk+SGF2ZSBldmVyeXRoaW5nIGF0IHlvdXIgZmluZ2VydGlwcy4gPGVtPkZpbmQgdGhlIGluZm9ybWF0aW9uIHlvdSBuZWVkLCB3aGVuIHlvdSBuZWVkIGl0LCBhbGwgaW4gb25lIHBsYWNlPC9lbT4uPC9saT4NCjxsaT48c3Ryb25nPlVzZSB5b3VyIE15TUhDQyB1c2VyIG5hbWUgYW5kIHBhc3N3b3JkIHRvIGxvZyBpbiB0byBOYXZpZ2F0ZS48L3N0cm9uZz48L2xpPg0KPC91bD4NCjxwIHN0eWxlPSJ0ZXh0LWFsaWduOiBjZW50ZXI7Ij48YSB0aXRsZT0iTUhDQyBOYXZpZ2F0ZSIgaHJlZj0iaHR0cHM6Ly9taGNjLm5hdmlnYXRlLmVhYi5jb20iIHRhcmdldD0iX2JsYW5rIj48c3Ryb25nPjxpbWcgc3JjPSIvSUNTL2ljc2ZzL21tL25hdl9wb3J0YWxfaWNvbl8zMnB4LnBuZz90YXJnZXQ9MzA3ZjdlZTAtZjYxNS00OGQ4LTkzZTMtMjMxYjFmMTVlMzQ0IiBhbHQ9Ik5hdmlnYXRlIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIC8+wqBHbyB0byBOYXZpZ2F0ZTwvc3Ryb25nPjwvYT48L3A+PC9kaXY+PC9kaXY+PC9kaXY+ZAIDDw8WAh8BaGRkAgoPDxYCHwFoZGQCCw8UKwACFgIfDDKpAgABAAAA/////wEAAAAAAAAADAIAAABQSmVuemFiYXIuUG9ydGFsLkZyYW1ld29yaywgVmVyc2lvbj0wLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPW51bGwFAQAAAC9KZW56YWJhci5Qb3J0YWwuRnJhbWV3b3JrLkRhdGEuT2JqZWN0SWRlbnRpZmllcgIAAAAIbV9HdWlkSUQKbV9TdHJpbmdJRAMBC1N5c3RlbS5HdWlkAgAAAAT9////C1N5c3RlbS5HdWlkCwAAAAJfYQJfYgJfYwJfZAJfZQJfZgJfZwJfaAJfaQJfagJfawAAAAAAAAAAAAAACAcHAgICAgICAgKlTcjq9rzxSIxT6anJ/YMbBgQAAAAAC2QWCAICDxYCHwFoZAIEDxYCHwFoZAIID2QWAmYPDxYCHwBnZBYEAgUPFgIfAWhkAgcPFgIfBgIBFgJmD2QWBAIBDxYCHwMF8w88ZGl2IGNsYXNzPSJwU2VjdGlvbiBjY1NlY3Rpb24iPjxkaXYgYWxpZ249ImxlZnQiPjxkaXYgY2xhc3M9Ind5c2l3eWd0ZXh0Ij48dWw+DQo8bGk+PGEgaHJlZj0iL0lDUy9QbGFuX2FuZF9SZWdpc3Rlci9QbGFuLmpuej9wb3J0bGV0PU9yaWVudGF0aW9uX0FjY2VzcyI+T25saW5lIE9yaWVudGF0aW9uPC9hPjwvbGk+DQo8bGk+PGEgdGl0bGU9IlJlZ2lzdGVyIGZvciBDbGFzc2VzIiBocmVmPSIvSUNTL1BsYW5fYW5kX1JlZ2lzdGVyL1JlZ2lzdGVyLmpueiI+UmVnaXN0ZXIgZm9yIENsYXNzZXM8L2E+PC9saT4NCjxsaT48YSB0aXRsZT0iRmluYW5jaWFsIEFpZCIgaHJlZj0iL0lDUy9TdHVkZW50X1NlcnZpY2VzL0ZpbmFuY2lhbF9BaWQvIj5GaW5hbmNpYWwgQWlkPC9hPjwvbGk+DQo8bGk+PGEgaHJlZj0iaHR0cHM6Ly9mZWRlcmF0ZS5zaWRld2Fsa3Byby5jb206OTAzMS9zcC9zdGFydFNTTy5waW5nP1RhcmdldFJlc291cmNlPWh0dHBzJTNBJTJGJTJGaGVyby5zaWRld2Fsa3Byby5jb20lMkYlM0ZzYWlkJTNEOTkzNzQmUGFydG5lcklkcElkPWh0dHBzOi8vbXkubWhjYy5lZHUvaWNzL1N0YXRpY1BhZ2VzL1NBTUwvSWRlbnRpdHlQcm92aWRlci8mUmVxdWVzdGVkQWNzVXJsPWh0dHBzOi8vZmVkZXJhdGUuc2lkZXdhbGtwcm8uY29tOjkwMzEvc3AvQUNTLnNhbWwyIiB0YXJnZXQ9Il9ibGFuayI+R2V0IEJvb2tzPC9hPjwvbGk+DQo8bGk+PGEgdGl0bGU9IkFkdmlzaW5nIFJlc291cmNlcyIgaHJlZj0iaHR0cDovL3d3dy5taGNjLmVkdS9BQVRDLyIgdGFyZ2V0PSJfYmxhbmsiPkFkdmlzaW5nIFJlc291cmNlczwvYT48L2xpPg0KPGxpPjxhIHRpdGxlPSJWaWV3IG15IERlZ3JlZSBBdWRpdCIgaHJlZj0iL0lDUy9QbGFuX2FuZF9SZWdpc3Rlci9QbGFuLmpuej9wb3J0bGV0PU15X0RlZ3JlZV9Qcm9ncmVzcyI+VmlldyBteSBEZWdyZWUgQXVkaXQ8L2E+PC9saT4NCjxsaT48YSB0aXRsZT0iTXkgQWNjb3VudCBJbmZvIiBocmVmPSIvSUNTL1N0dWRlbnRfU2VydmljZXMvU3R1ZGVudF9GaW5hbmNpYWxfU2VydmljZXMvRGVmYXVsdF9QYWdlLmpuej9wb3J0bGV0PUNBU0hOZXRfTXlfQWNjb3VudF9JbmZvIj5QYXkgbXkgQmlsbDwvYT48L2xpPg0KPGxpPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmOyI+PGEgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7IiB0aXRsZT0iU2FpbnRzIEVtYWlsIEluZm9ybWF0aW9uIiBocmVmPSJodHRwOi8vd3d3Lm1oY2MuZWR1L1NhaW50c0VtYWlsLyIgdGFyZ2V0PSJfYmxhbmsiPiBZb3VyIFN0dWRlbnQgRW1haWwgSW5mb3JtYXRpb248L2E+wqAtIDxlbT5hdmFpbGFibGUgYSBmZXcgZGF5cyBhZnRlciB5b3UgZmlyc3QgcmVnaXN0ZXIgZm9yIGNsYXNzZXM8L2VtPjwvc3Bhbj48L2xpPg0KPGxpPjxhIHRpdGxlPSJTYWludHMgRW1haWwiIGhyZWY9Imh0dHA6Ly93d3cub3V0bG9vay5jb20vc2FpbnRzLm1oY2MuZWR1IiB0YXJnZXQ9Il9ibGFuayI+U2FpbnRzIEVtYWlsIExvZy1pbjwvYT48L2xpPg0KPGxpPjxhIHRpdGxlPSJTYWludHMgRW1haWwgU2VsZiBTZXJ2aWNlIFBhc3N3b3JkIFJlc2V0IiBocmVmPSJodHRwczovL2FjY291bnQuYWN0aXZlZGlyZWN0b3J5LndpbmRvd3NhenVyZS5jb20vUGFzc3dvcmRSZXNldC9SZWdpc3Rlci5hc3B4P3RlbmFudElkZW50aWZpZXI9NGI0NDJkYjktZDQ0OC00ZGM1LTlhM2EtMDgxMjA4MmI2OTllIiB0YXJnZXQ9Il9ibGFuayI+U2V0IHVwIFNhaW50cyBFbWFpbCBTZWxmIFNlcnZpY2UgUGFzc3dvcmQgUmVzZXQ8L2E+PC9saT4NCjxsaT48YSBocmVmPSIvSUNTL015X0NvdXJzZXMvQWNhZGVtaWNzX0hvbWVwYWdlLmpuej9wb3J0bGV0PVNtYXJ0ZXZhbF9Db3Vyc2VfRXZhbHVhdGlvbnMiPkNvdXJzZSBFdmFsdWF0aW9uczwvYT48L2xpPg0KPGxpPjxhIHRpdGxlPSJTdHVkZW50IFNjaG9sYXJzaGlwcyIgaHJlZj0iaHR0cHM6Ly93d3cubWhjYy5lZHUvc2Nob2xhcnNoaXBzLyI+U3R1ZGVudCBTY2hvbGFyc2hpcHM8L2E+PC9saT4NCjwvdWw+PC9kaXY+PC9kaXY+PC9kaXY+ZAIDDw8WAh8BaGRkAgoPDxYCHwFoZGQYAQVAcGcyJFYkcnB0ckNvdXJzZXMkY3RsMDEkcnB0ckl0ZW1zJGN0bDA1JF9jdGxDYWxlbmRhclNjaGVkdWxlJF9ndg88KwAMAQhmZI5jP0jGep6E6FSovlyemM6J1x44YUKpcb6GDZ+azVZt" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['MAINFORM'];
+if (!theForm) {
+    theForm = document.MAINFORM;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/WebResource.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+(function( pi, $) {pi.PageID = '';pi.DisplayName = '';pi.PageURL = '';pi.IsCustomizing ='';pi.IsShowingPortlet = '';}(window.PageInfo = window.PageInfo || {}, PageInfo));try {window.PageInfo.PageID = '875d270e-b02a-40a1-85f2-bc9d165e910d';window.PageInfo.DisplayName = 'Student Home';window.PageInfo.PageURL = '/ICS/Student_Home.jnz';window.PageInfo.IsCustomizing ='False';window.PageInfo.IsShowingPortlet = 'False';window.PageInfo.IsReadOnly = 'False';}catch(ex){ console.error(ex);}//]]>
+</script>
+
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/AllMyCoursesScript.js" type="text/javascript"></script>
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/ScriptResource_002.js" type="text/javascript"></script>
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/ScriptResource.js" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="38ABEAAB" type="hidden">
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('_scriptManager', 'MAINFORM', [], [], [], 90, '');
+//]]>
+</script>
+
+        <input name="___BrowserRefresh" id="___BrowserRefresh" value="809ad14a-a7e1-4ca4-ac99-b0d3b14fb4d8" type="hidden">
+        <p class="screenReaderText"><a href="#" onclick="window.location.hash='content'; return false;">Skip To Content</a></p>
+        <div id="masthead"><div id="loginBox"><div id="welcomeBackBar">
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        searchBox.textBox = 'ctl03_tbSearch';
+        searchBox.button = 'ctl03_lbSearch';
+        searchBox.showInSideBar = 'False';
+        searchBox.whereDropDown = 'ctl03_ddlWhere';
+        searchBox.whatDropDown = 'ctl03_ddlWhat';
+        searchBox.includePastCheckBox = 'ctl03_cbIncludePast';
+        searchBox.showHideLabel = 'ctl03_lblShowHide';
+        searchBox.userId = "d4ce6921-6f03-4e42-9077-6f1e1f206918";
+        searchBox.autoCompleteSelect = function(event, ui) {
+            $("#" + searchBox.textBox).val(ui.item.value);
+            __doPostBack('ctl03$lbSearch','');
+        };
+        searchBox.initAutoComplete();
+        $('#ctl03_lbSearch').keypress(function(e) {
+            var key = e.which;
+            if (key === 32 || key === 13) {
+                if (searchBox.searchClick()) {
+                    window.location.href = this.href;
+                }
+                return false;
+            }
+        });   
+    });
+ </script>
+
+<div id="searchAutoCompleteResults" class="searchAutoComplete"> <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul></div>
+
+
+<div id="userWelcome">
+<span class="message">Welcome back </span>
+<strong>Ponyboy Peterman</strong>
+<br><br><ul>
+<li><a id="accountInfo" href="javascript:__doPostBack('welcomeBackBar','accountInfo')" title="Manage your account information, such as your picture, e-mail address, and all other personal settings">Personal Info</a></li>
+<li><a id="logout" href="javascript:__doPostBack('welcomeBackBar','logout')" title="Click here to log out of the site">Logout</a></li>
+</ul>
+</div>
+</div><div id="ctl03_searchPanel" class="searchPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl03_lbSearch')">
+	
+    <div id="ctl03_divSideBarContainer">
+        <div class="searchControls">
+     
+             <label for="ctl03_tbSearch" id="ctl03_lblForSearch" class="screenReaderText">Search</label>
+             <input name="ctl03$tbSearch" value="Search..." id="ctl03_tbSearch" onfocus="return searchBox.cleardefault();" onblur="return searchBox.restoredefault();" class="ui-autocomplete-input" autocomplete="off" style="color: rgb(128, 128, 128);" type="text">
+           
+            <label for="ctl03_lbSearch" id="ctl03_lblForSearchButton" class="screenReaderText">Search Button</label>
+            <a onclick="return searchBox.validate();" id="ctl03_lbSearch" class="searchButton ieInlineBlock" role="button" href="javascript:__doPostBack('ctl03$lbSearch','')"><span class="screenReaderText">Search</span></a>
+            
+        </div>
+        
+    </div>
+
+</div></div><div id="loginBox"></div><h1><a href="https://my.mhcc.edu/ICS/" title="Mt. Hood Community College Home Page">Mt. Hood Community College</a></h1></div>
+        
+        
+        
+        <div id="headerTabs"><ul><li class="tab_Home firstTab selected"><a href="https://my.mhcc.edu/ICS/">Home</a></li><li class="tab_Admissions"><a href="https://my.mhcc.edu/ICS/Admissions/">Admissions</a></li><li class="tab_Plan_and_Register"><a href="https://my.mhcc.edu/ICS/Plan_and_Register/">Plan and Register</a></li><li class="tab_Student_Services"><a href="https://my.mhcc.edu/ICS/Student_Services/">Student Services</a></li><li class="tab_Student_Life"><a href="https://my.mhcc.edu/ICS/Campus_Life/">Student Life</a></li><li class="tab_Course_Search"><a href="https://my.mhcc.edu/ICS/Schedule/">Course Search</a></li><li class="tab_My_Courses"><a href="https://my.mhcc.edu/ICS/My_Courses/">My Courses</a></li><li class="tab_Resources"><a href="https://my.mhcc.edu/ICS/Resources/">Resources</a></li><li id="more"><a>more</a><ul id="moreList" style="display: none;"><li class="tab_Personal lastTab"><a href="https://my.mhcc.edu/ICS/My_Pages/">Personal</a></li></ul></li></ul></div>
+        <div id="mainCrumbs">
+            
+            <div id="youAreHere">
+                <span class="crumbs">You are here:&nbsp; <a href="https://my.mhcc.edu/ICS/Student_Home.jnz">Student Home</a> &nbsp;</span>
+            </div>
+        </div>
+        <div id="mainLayout" class="container">
+            
+            <div id="sideBar" class="container">
+            
+                <div class="sideSection" id="thisContext"><h2><a href="https://my.mhcc.edu/ICS/">My.mhcc.edu</a></h2><ul id="contextPages"><li class="currentPage"><a id="xpndPrtlts" href="javascript:void(0);" title="View Portlets">view</a><a id="xpndPrtlts" href="javascript:void(0);" title="View Portlets">view</a><a href="https://my.mhcc.edu/ICS/Student_Home.jnz">Student Home</a><ul id="pagePortlets"><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=My_Course_Schedule">My Class Schedule</a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Online_Learning_Tools">Online Learning</a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=All_My_Courses">My Courses </a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=25_Live_Calendar_of_Events">Calendars</a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Simple_Query">My Alerts</a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Free-form_Content">MHCC Navigate</a></li><li><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Top_Student_Concerns">Frequently Used Links</a></li></ul></li></ul><div class="contexts"></div></div><div id="quickLinks"><h3>Quick Links</h3><dl id="myCourses" class="closed"><dt>My Courses</dt><dd><ul><li><a href="https://my.mhcc.edu/ICS/Academics/1533/WR122__UG17/WI_2018_UNDG-WR122__UG17_-08/">WR122 (UG17) 08 - English Composition: Critical Thinking</a></li><li><a href="https://my.mhcc.edu/ICS/Academics/1448/PH212__UG17/WI_2018_UNDG-PH212__UG17_-01/">PH212 (UG17) 01 - General Physics with Calculus II</a></li><li><a href="https://my.mhcc.edu/ICS/Academics/1438/CH242__UG17/WI_2018_UNDG-CH242__UG17_-01/">CH242 (UG17) 01 - Organic Chemistry II</a></li><li><a href="https://my.mhcc.edu/ICS/Academics/1199/ART262__UG17/WI_2018_UNDG-ART262__UG17_-E1/">ART262 (UG17) E1 - Photography II</a></li></ul></dd> </dl><dl id="myPages" class="closed"><dt>Personal</dt><dd><ul><li><a href="https://my.mhcc.edu/ICS/My_Pages/">Set Up your Personal Pages</a></li></ul></dd> </dl><ul id="globalLinks"><li><a target="_blank" href="https://www.mhcc.edu/ContinuingActionPlan/">Accessibility Continuing Action Plan</a></li><li><a target="_blank" href="http://www.bookstore.mhcc.cc.or.us/">Bookstore</a></li><li><a target="_blank" href="http://www.mhcc.edu/computerlabs/">Computer Lab Schedule</a></li><li><a target="_blank" href="http://my.mhcc.edu/ics/Student_Services/Enrollment_and_Registration/Default_Page.jnz?portlet=CX_-_Student_Profile_Portlet">Update My Address</a></li><li><a target="_blank" href="http://www.mhcc.edu/lsc/">Learning Success Center</a></li><li><a target="_blank" href="http://my.mhcc.edu/ics/Student%20Services/Student%20Support%20Services/Library/">Library</a></li><li><a target="_blank" href="http://www.mhcc.edu/">MHCC Homepage</a></li><li><a href="https://my.mhcc.edu/ICS/Resources/RAVE/">RAVE Emergency Alert System</a></li><li><a target="_blank" href="http://www.outlook.com/saints.mhcc.edu">Saints Email</a></li></ul></div>
+                
+
+
+ 
+            
+                <div class="sideBarFoot containerFoot"></div>
+            </div>
+            
+            <div id="portlets" class="container">
+                <div id="pageTitle">
+                    <h2><a href="https://my.mhcc.edu/ICS/" id="contextName">My.mhcc.edu</a></h2>
+                </div>
+                <div id="pageTitleButtons">
+                    <a id="pagePreferences" title="Preferences" href="javascript:__doPostBack('pagePreferences','')">
+                         <img alt="preferences" style="display: block; float: left;" src="Student%20Home%20%20%20My.mhcc.edu_files/cog.png">
+                    </a>
+                    
+                    <input name="btnPrintView" id="btnPrintView" class="print-preview" title="Print this page" value="Print this page" onclick="window.print();" type="button">
+                </div>
+                
+                
+                <span id="content"></span>
+                <div id="PORTLETGRID" class="two_column_even container"><div class="pColumn pColumn1 container">
+
+<!-- Current View: ASP.portlets_crm_student_portlet_studentschedule_default_ascx-->
+
+
+
+
+
+<!-- Current View: ASP.applications_ics_portlets_customcontentportlet_default_view_ascx-->
+
+
+
+
+
+<!-- Current View: ASP.portlets_lms_allmycoursesportlet_views_mainview_ascx-->
+
+
+<div id="pg2_AllMyCoursesPortlet" class="portlet pt_AllMyCoursesPortlet pi_All_My_Courses" style="z-index:5;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=All_My_Courses" title="Go to main My Courses  screen">My Courses </a></h3></div><div class="pContent AllMyCourses">
+<style>
+.trHighlight
+{
+	background-color:#c4df9b;
+}
+</style>
+<div class="pSection">    
+    <p id="pg2_V_pNav">
+	    <span id="pg2_V_lblShow"></span>&nbsp;
+		<select name="pg2$V$ddShowMenu" onchange="javascript:setTimeout('__doPostBack(\'pg2$V$ddShowMenu\',\'\')', 0)" id="pg2_V_ddShowMenu">
+	<option value="0">Past Courses</option>
+	<option selected="selected" value="1">Current Courses</option>
+	<option value="2">Future Courses</option>
+
+</select> &nbsp;
+		
+		<a id="pg2_V_lbViewSched" href="javascript:__doPostBack('pg2$V$lbViewSched','')"></a>
+    </p>
+    
+    
+	        <table id="tblCoursesSched" width="100%" border="0">
+	    
+            <tbody><tr class="header" id="rptrHeader">
+                <td colspan="4"><span class="left"><b>Winter Term 2018 (UNDG)</b></span><span class="right"><span class="sepBefore"><img src="Student%20Home%20%20%20My.mhcc.edu_files/collapse.gif" id="pg2_V_rptrCourses_ctl01_imgCollapseAll" alt="Hide" class="gridTog" hidetext="Hide" showtext="Show" onclick="toggleAll(this, 'WinterTerm2018(UNDG)');" name="imgAllWinterTerm2018(UNDG)"></span></span></td>
+            </tr>
+            <tr class="subheader" id="rptrSubHeader">
+                <td colspan="4"><span class="left">My Winter Term 2018 (UNDG) Course List</span><span class="right"><span class="sepBefore"><img src="Student%20Home%20%20%20My.mhcc.edu_files/collapse.gif" id="pg2_V_rptrCourses_ctl01_imgCollapseCourse" alt="Hide" class="gridTog" hidetext="Hide" showtext="Show" onclick="toggleCourses(this, 'WinterTerm2018(UNDG)');" name="imgCollapseCourseWinterTerm2018(UNDG)"></span></span></td>
+            </tr>
+            
+	                <tr id="pg2_V_rptrCourses_ctl01_rptrItems_ctl00_trCourseHeader" class="subheader">
+	<td>Code</td>
+	<td>Course name</td>
+	<td>Grade</td>
+	<td>Schedule</td>
+</tr>
+	                    
+	            
+	                <tr id="pg2_V_rptrCourses_ctl01_rptrItems_ctl01_trItems" onmouseover="highlight('ART262 (UG17)E1', 'ART262 (UG17) (E1)');" name="ART262 (UG17)E1WinterTerm2018(UNDG)" onmouseout="highlight('ART262 (UG17)E1', 'ART262 (UG17) (E1)');" class="trHighlight">
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl01_hlCourseCode" href="https://my.mhcc.edu/ICS/Academics/1199/ART262__UG17/WI_2018_UNDG-ART262__UG17_-E1/">ART262 (UG17) (E1)</a></td>
+	<td>Photography II</td>
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl01_hlGrade" href="https://my.mhcc.edu/ICS/Academics/1199/ART262__UG17/WI_2018_UNDG-ART262__UG17_-E1/Gradebook.jnz?portlet=Gradebook">--</a></td>
+	<td><span class="amcActiveSched">Tue 6:10-10:00 PM;</span> </td>
+</tr>
+
+	            
+	                <tr id="pg2_V_rptrCourses_ctl01_rptrItems_ctl02_trItems" onmouseover="highlight('CH242 (UG17)01', 'CH242 (UG17) (01)');" class="alt" name="CH242 (UG17)01WinterTerm2018(UNDG)" onmouseout="highlight('CH242 (UG17)01', 'CH242 (UG17) (01)');">
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl02_hlCourseCode" href="https://my.mhcc.edu/ICS/Academics/1438/CH242__UG17/WI_2018_UNDG-CH242__UG17_-01/">CH242 (UG17) (01)</a></td>
+	<td>Organic Chemistry II</td>
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl02_hlGrade" href="https://my.mhcc.edu/ICS/Academics/1438/CH242__UG17/WI_2018_UNDG-CH242__UG17_-01/Gradebook.jnz?portlet=Gradebook">--</a></td>
+	<td><span class="amcActiveSched">Mon 2:10-3:00 PM;</span> <span class="amcActiveSched">Mon 3:10-5:00 PM;</span> <span class="amcActiveSched">Mon 10-10:50 AM;</span> <span class="amcActiveSched">Mon, Wed, Fri 11-11:50 AM;</span> </td>
+</tr>
+
+	            
+	                <tr id="pg2_V_rptrCourses_ctl01_rptrItems_ctl03_trItems" onmouseover="highlight('PH212 (UG17)01', 'PH212 (UG17) (01)');" name="PH212 (UG17)01WinterTerm2018(UNDG)" onmouseout="highlight('PH212 (UG17)01', 'PH212 (UG17) (01)');" class="">
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl03_hlCourseCode" href="https://my.mhcc.edu/ICS/Academics/1448/PH212__UG17/WI_2018_UNDG-PH212__UG17_-01/">PH212 (UG17) (01)</a></td>
+	<td>General Physics with Calculus II</td>
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl03_hlGrade" href="https://my.mhcc.edu/ICS/Academics/1448/PH212__UG17/WI_2018_UNDG-PH212__UG17_-01/Gradebook.jnz?portlet=Gradebook">--</a></td>
+	<td><span class="amcActiveSched">Mon, Tue, Wed, Fri 9-9:50 AM;</span> <span class="amcActiveSched">Wed 2:10-5:00 PM;</span> </td>
+</tr>
+
+	            
+	                <tr id="pg2_V_rptrCourses_ctl01_rptrItems_ctl04_trItems" onmouseover="highlight('WR122 (UG17)08', 'WR122 (UG17) (08)');" class="alt" name="WR122 (UG17)08WinterTerm2018(UNDG)" onmouseout="highlight('WR122 (UG17)08', 'WR122 (UG17) (08)');">
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl04_hlCourseCode" href="https://my.mhcc.edu/ICS/Academics/1533/WR122__UG17/WI_2018_UNDG-WR122__UG17_-08/">WR122 (UG17) (08)</a></td>
+	<td>English Composition: Critical Thinking</td>
+	<td><a id="pg2_V_rptrCourses_ctl01_rptrItems_ctl04_hlGrade" href="https://my.mhcc.edu/ICS/Academics/1533/WR122__UG17/WI_2018_UNDG-WR122__UG17_-08/Gradebook.jnz?portlet=Gradebook"><span class="gradeLetter">A</span> <span class="gradePercentage">(93%)</span></a></td>
+	<td><span class="amcActiveSched">Tue, Thu 2:40-4:30 PM;</span> </td>
+</tr>
+
+	            
+                    
+                    
+                
+        
+            </tbody></table>
+                
+</div></div></div>
+
+
+<!-- Current View: ASP.applications_ics_portlets_customcontentportlet_default_view_ascx-->
+
+
+<div id="pg0_StudentSchedule" class="portlet pt_StudentSchedule pi_My_Course_Schedule" style="z-index:7;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=My_Course_Schedule" title="Go to main My Class Schedule screen">My Class Schedule</a></h3></div></div><div id="pg3_CustomContentPortlet" class="portlet pt_CustomContentPortlet pi_25_Live_Calendar_of_Events" style="z-index:4;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=25_Live_Calendar_of_Events" title="Go to main Calendars screen">Calendars</a></h3></div><div class="pContent">
+<script language="javascript">
+<!--
+    function ConfirmDelete(msg) {
+        return confirm(msg);
+    }
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" property="stylesheet" href="Student%20Home%20%20%20My.mhcc.edu_files/lightbox.css">
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/jquery_002.js"></script>
+<script>
+    $(document).ready(function() { LoadLightboxValues();});    
+	function LoadLightboxValues() 
+	{
+	    $(".lightbox").lightbox(
+	        {
+	            fileLoadingImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/loading.gif',
+	            fileBottomNavCloseImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/closelabel.gif'
+	        });
+	}
+ 
+</script>
+
+
+
+
+        <div class="pSection ccSection"><div align="left"><div class="wysiwygtext"><ul>
+<li><a title="Calendar of Events" href="http://www.mhcc.edu/CalendarofEvents/#" target="_blank">Calendar&nbsp;of Events</a></li>
+<li><a title="Registration Calendar" href="http://www.mhcc.edu/RegistrationCalendar/" target="_blank">Registration Calendar</a></li>
+<li><a title="Financial Aid Deadlines" href="http://www.mhcc.edu/ApplyingFinAid/" target="_blank">Financial Aid Deadlines</a>&nbsp;</li>
+</ul></div></div></div>
+        
+        <div style="clear:both"></div>
+    
+</div></div>
+<div class="pColumnFoot pColumn1Foot containerFoot"></div></div><div class="pColumn pColumn2 container">
+
+<!-- Current View: ASP.portlets_cus_ics_simplequery_default_view_ascx-->
+
+
+<div id="pg4_SimpleQuery" class="portlet pt_SimpleQuery pi_Simple_Query" style="z-index:3;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Simple_Query" title="Go to main My Alerts screen">My Alerts</a></h3><div></div></div><div class="pContent">
+<script type="text/javascript">
+
+
+    jQuery(function ($) {
+        // Setup 
+        
+        Handlebars.registerHelper('ifCond', function (v1, operator, v2, 
+options) {
+            console.log(v1 + " " + operator + " " + v2);
+            switch (operator) {
+                case '==':
+                    return (v1 == v2) ? options.fn(this) : 
+options.inverse(this);
+                case '===':
+                    return (v1 === v2) ? options.fn(this) : 
+options.inverse(this);
+                case '<':
+                    return (v1 < v2) ? options.fn(this) : 
+options.inverse(this);
+                case '<=':
+                    return (v1 <= v2) ? options.fn(this) : 
+options.inverse(this);
+                case '>':
+                    return (v1 > v2) ? options.fn(this) : 
+options.inverse(this);
+                case '>=':
+                    return (v1 >= v2) ? options.fn(this) : 
+options.inverse(this);
+                case '&&':
+                    return (v1 && v2) ? options.fn(this) : 
+options.inverse(this);
+                case '||':
+                    return (v1 || v2) ? options.fn(this) : 
+options.inverse(this);
+                case '<>', '!=':
+                    return (v1 != v2) ? options.fn(this) : 
+options.inverse(this);
+                default:
+                    return options.inverse(this);
+            }
+        });
+        
+        var portletLocation = '/ICS/Portlets/CUS/ICS/SimpleQuery/';
+
+        var portletId = 'efc36cbf-1b9e-4481-b98a-ee7ca88447da';
+
+        var controls = {
+            datatable: $('#pg4_V_tblDataTable'),
+            htmlDiv: $('#pg4_V_divSQResults'),
+            error: $('#pg4_V_error'),
+            message: $('#pg4_V_message'),
+            loading: $('#pg4_V_lnbGetData')
+        };
+
+        function fnFormatDetails(nTr, aoColumns, oTable) {
+
+            var aData = oTable.fnGetData(nTr);
+            var sOut = '<table cellpadding="5" cellspacing="0" 
+border="0" style="padding-left:50px;">';
+            for (var column in aoColumns) {
+                if (aoColumns[column].bDetail) {
+                    sOut += '<tr><td><strong>' + 
+aoColumns[column].sTitle + ':</strong> ' + aData[column] + '</td></td>';
+                }
+            }
+            sOut += '</table>';
+
+            return sOut;
+        }
+        
+        function fnFormatDetailsTemplate(nTr, template, helpers, oTable)
+ {
+
+            var aData = oTable.fnGetData(nTr);
+            var sOut = '<div>';
+            sOut += template(aData, { helpers: helpers });
+            sOut += '</div>';
+
+            return sOut;
+        }
+
+        function getData() {
+            $.ajax({
+                url: portletLocation + "Query.ashx",
+                data: { portletId: portletId, action: "RunQueryHtml" },
+                dataType: "json",
+                type: "POST",
+                success: function (ret) {
+                    if (ret.d.success) {
+                        if (ret.d.html == "") {
+                            $(controls.message).show().html('No results 
+returned by this query.' + (ret.d.query != null ? ('<br />Query text 
+(visible by Query Admin only):<br />' + ret.d.query) : ''));
+                        } else {
+                            controls.htmlDiv.html(ret.d.html);
+                        }
+                        controls.loading.hide();
+                    } else {
+                        $(controls.error).show().html(ret.d.message + 
+"<br />" + ret.d.exception);
+                    }
+                },
+                failure: function (ret) {
+                    $(controls.error).html(ret.Message + "<br />" + 
+ret.StackTrace).show();
+                }
+            });
+        }
+
+        function loadTable() {
+            $.ajax({
+                url: portletLocation + "Query.ashx",
+                data: { portletId: portletId, action: "RunQuery" },
+                dataType: "json",
+                type: "POST",
+                success: function (ret) {
+                    if (ret.d.success) {
+                        //data = ret.d.data;
+                        //columns = ret.d.columns;
+                        var oTable = controls.datatable.dataTable({ 
+"sPaginationType": "full_numbers", "aaData": ret.d.data, "aoColumns": 
+ret.d.columns, "aaSorting": [], "bJQueryUI": true });
+
+                        var mode = $('#pg4_V_hdnDtMode').val();
+
+                        if (mode == "Columns") {
+
+                            controls.datatable.on('click', 'img', 
+function() {
+                                var nTr = this.parentNode.parentNode;
+                                if (this.src.match('details_close')) {
+                                    /* This row is already open - close 
+it */
+                                    this.src = 
+'/ICS/ClientConfig/images/datatables/details_open.png';
+                                    oTable.fnClose(nTr);
+                                } else {
+                                    /* Open this row */
+                                    this.src = 
+'/ICS/ClientConfig/images/datatables/details_close.png';
+                                    oTable.fnOpen(nTr, 
+fnFormatDetails(nTr, ret.d.columns, oTable), 'details');
+                                }
+                            });
+                        } else if (mode == "Template") {
+                            var source = $('#dtTemplate_' + 
+portletId).html();
+                            var template = Handlebars.compile(source);
+                            var helpers = {};
+                            $.each(ret.d.columnref, function (i, e) {
+                                helpers[i] = function () {
+                                    return undefined == this[e] ? "" : 
+new Handlebars.SafeString(this[e]);
+                                };
+                                helpers["has_" + i] = function (block) {
+                                    return (undefined == this[e] ? "" : 
+new Handlebars.SafeString(this[e])) == "" ? block.inverse(this) : 
+block.fn(this);
+                                };
+                            });
+                            
+                            console.log(helpers);
+                            controls.datatable.on('click', 'img', 
+function () {
+                                var nTr = this.parentNode.parentNode;
+                                if (this.src.match('details_close')) {
+                                    /* This row is already open - close 
+it */
+                                    this.src = 
+'/ICS/ClientConfig/images/datatables/details_open.png';
+                                    oTable.fnClose(nTr);
+                                } else {
+                                    /* Open this row */
+                                    this.src = 
+'/ICS/ClientConfig/images/datatables/details_close.png';
+                                    console.log(helpers);
+                                    oTable.fnOpen(nTr, 
+fnFormatDetailsTemplate(nTr, template, helpers, oTable), 'details');
+                                }
+                            });
+                        }
+                    } else {
+                        $(controls.error).show().html(ret.d.message + 
+"<br />" + ret.d.exception);
+                    }
+                },
+                failure: function (ret) {
+                    $(controls.error).show().html(ret.Message + "<br />"
+ + ret.StackTrace);
+                }
+            });
+        }
+        
+        function loadTemplate() {
+            $.ajax({
+                url: portletLocation + "Query.ashx",
+                data: { portletId: portletId, action: "RunQuery" },
+                dataType: "json",
+                type: "POST",
+                success: function (ret) {
+                    if (ret.d.success) {
+                        var source = $('#template_' + portletId).html();
+                        var template = Handlebars.compile(source);
+                        var helpers = {};
+                        $.each(ret.d.columnref, function(i, e) {
+                            helpers[i] = function () {
+                                return undefined == this[e] ? "" : new 
+Handlebars.SafeString(this[e]);
+                            };
+                        });
+                        controls.htmlDiv.html(template(ret.d,{ helpers: 
+helpers }));
+                    } else {
+                        $(controls.error).show().html(ret.d.message + 
+"<br />" + ret.d.exception);
+                    }
+                },
+                failure: function (ret) {
+                    $(controls.error).show().html(ret.Message + "<br />"
+ + ret.StackTrace);
+                }
+            });
+        }
+
+        if ($('#pg4_V_tblDataTable').length != 0)
+            if ($.fn.dataTableExt == undefined) {
+                
+$.getScript('//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js',
+ function () {
+                    $("<link/>", {
+                        rel: "stylesheet",
+                        type: "text/css",
+                        href: 
+"//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css"
+
+                    }).appendTo("head");
+                    loadTable(controls, portletLocation, portletId);
+                });
+            }
+            else {
+                loadTable(controls, portletLocation, portletId);
+            }
+        
+        if ($('#pg4_V_pnlTemplate').length != 0)
+            loadTemplate(controls, portletLocation, portletId);
+            
+        if ($('#pg4_V_lnbGetData').length != 0) {
+            getData(controls, portletLocation, portletId);
+        }
+        
+    });
+
+</script>
+<style type="text/css">
+    .hidden
+    {
+        display: none;
+    }
+    .viewResults
+    {
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    #tblDataTable
+    {
+        margin-top: 5px;
+    }
+    #pg4_V_pnlExport
+    {
+        border: 2px solid #D2D2D2;
+        border-radius: 4px 4px 4px 4px;
+        float: right;
+        height: 28px;
+        margin-bottom: 5px;
+        padding-left: 5px;
+        margin-top: 5px;
+    }
+    #pg4_V_pnlExport a
+    {
+        float: left;
+        background-image: none !important;
+        margin-left: 5px;   
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 0px !important;
+    }
+</style>
+<div class="pContent">
+    <input name="pg4$V$hdnUseAJAX" id="pg4_V_hdnUseAJAX" type="hidden">
+    <div id="pg4_V_message" class="feedbackMessage hidden">
+    </div>
+    <div id="pg4_V_error" class="feedbackError hidden">
+    </div>
+    
+    <div class="pSection">
+        
+        
+        
+        
+        
+        <div id="pg4_V_divSQResults" style="float: left;"></div>
+        <div id="pg4_V_pnlTemplate">
+	
+            <script type="text/x-handlebars-template" id="template_efc36cbf-1b9e-4481-b98a-ee7ca88447da">
+                
+{{#each data}}
+    {{#if @first}}
+        <table>
+    {{/if}}
+    <tr>
+<th style="vertical-align: top;">{{heading}}</th>
+<td style="font-size:120%;">{{line1}}<br />{{line2}}</td>
+</tr>
+    {{#if @last}}
+        </table>
+    {{/if}}
+{{/each}}
+            </script>            
+        
+</div>
+        
+    </div>
+</div>
+<div style="clear: both">
+</div>
+</div></div>
+
+
+<!-- Current View: ASP.applications_ics_portlets_customcontentportlet_default_view_ascx-->
+
+
+<div id="pg5_CustomContentPortlet" class="portlet pt_CustomContentPortlet pi_Free_form_Content" style="z-index:2;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Free-form_Content" title="Go to main MHCC Navigate screen">MHCC Navigate</a></h3></div><div class="pContent">
+<script language="javascript">
+<!--
+    function ConfirmDelete(msg) {
+        return confirm(msg);
+    }
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" property="stylesheet" href="Student%20Home%20%20%20My.mhcc.edu_files/lightbox.css">
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/jquery_002.js"></script>
+<script>
+    $(document).ready(function() { LoadLightboxValues();});    
+	function LoadLightboxValues() 
+	{
+	    $(".lightbox").lightbox(
+	        {
+	            fileLoadingImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/loading.gif',
+	            fileBottomNavCloseImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/closelabel.gif'
+	        });
+	}
+ 
+</script>
+
+
+
+
+        <div class="pSection ccSection"><div align="left"><div class="wysiwygtext"><p>Want to make college less complicated? Let Navigate help you.</p>
+<ul>
+<li>Always know what's next. <em>Stay updated on approaching deadlines or other important information.</em></li>
+<li>Create your own destiny. <em>Explore academic programs and careers that work for you and your goals.</em></li>
+<li>Have everything at your fingertips. <em>Find the information you need, when you need it, all in one place</em>.</li>
+<li><strong>Use your MyMHCC user name and password to log in to Navigate.</strong></li>
+</ul>
+<p style="text-align: center;"><a title="MHCC Navigate" href="https://mhcc.navigate.eab.com/" target="_blank"><strong><img src="Student%20Home%20%20%20My.mhcc.edu_files/nav_portal_icon_32px.htm" alt="Navigate" width="32" height="32">&nbsp;Go to Navigate</strong></a></p></div></div></div>
+        
+        <div style="clear:both"></div>
+    
+</div></div>
+
+
+<!-- Current View: ASP.applications_ics_portlets_customcontentportlet_default_view_ascx-->
+
+
+<div id="pg6_CustomContentPortlet" class="portlet pt_CustomContentPortlet pi_Top_Student_Concerns" style="z-index:1;"><div class="pHead"><h3><a href="https://my.mhcc.edu/ICS/Student_Home.jnz?portlet=Top_Student_Concerns" title="Go to main Frequently Used Links screen">Frequently Used Links</a></h3></div><div class="pContent">
+<script language="javascript">
+<!--
+    function ConfirmDelete(msg) {
+        return confirm(msg);
+    }
+//-->
+</script>
+
+
+<link rel="stylesheet" type="text/css" property="stylesheet" href="Student%20Home%20%20%20My.mhcc.edu_files/lightbox.css">
+<script src="Student%20Home%20%20%20My.mhcc.edu_files/jquery_002.js"></script>
+<script>
+    $(document).ready(function() { LoadLightboxValues();});    
+	function LoadLightboxValues() 
+	{
+	    $(".lightbox").lightbox(
+	        {
+	            fileLoadingImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/loading.gif',
+	            fileBottomNavCloseImage: '/ICS/UI/Common/Images/PortletImages/Lightbox/closelabel.gif'
+	        });
+	}
+ 
+</script>
+
+
+
+
+        <div class="pSection ccSection"><div align="left"><div class="wysiwygtext"><ul>
+<li><a target="_blank" href="https://mhcc.blackboard.com/">Blackboard Learn</a></li><li><a href="https://my.mhcc.edu/ICS/Plan_and_Register/Plan.jnz?portlet=Orientation_Access">Online Orientation</a></li>
+<li><a title="Register for Classes" href="https://my.mhcc.edu/ICS/Plan_and_Register/Register.jnz">Register for Classes</a></li>
+<li><a title="Financial Aid" href="https://my.mhcc.edu/ICS/Student_Services/Financial_Aid/">Financial Aid</a></li>
+<li><a href="https://federate.sidewalkpro.com:9031/sp/startSSO.ping?TargetResource=https%3A%2F%2Fhero.sidewalkpro.com%2F%3Fsaid%3D99374&amp;PartnerIdpId=https://my.mhcc.edu/ics/StaticPages/SAML/IdentityProvider/&amp;RequestedAcsUrl=https://federate.sidewalkpro.com:9031/sp/ACS.saml2" target="_blank">Get Books</a></li>
+<li><a title="Advising Resources" href="http://www.mhcc.edu/AATC/" target="_blank">Advising Resources</a></li>
+<li><a title="View my Degree Audit" href="https://my.mhcc.edu/ICS/Plan_and_Register/Plan.jnz?portlet=My_Degree_Progress">View my Degree Audit</a></li>
+<li><a title="My Account Info" href="https://my.mhcc.edu/ICS/Student_Services/Student_Financial_Services/Default_Page.jnz?portlet=CASHNet_My_Account_Info">Pay my Bill</a></li>
+<li><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="Saints Email Information" href="http://www.mhcc.edu/SaintsEmail/" target="_blank"> Your Student Email Information</a>&nbsp;- <em>available a few days after you first register for classes</em></span></li>
+<li><a title="Saints Email" href="http://www.outlook.com/saints.mhcc.edu" target="_blank">Saints Email Log-in</a></li>
+<li><a title="Saints Email Self Service Password Reset" href="https://account.activedirectory.windowsazure.com/PasswordReset/Register.aspx?tenantIdentifier=4b442db9-d448-4dc5-9a3a-0812082b699e" target="_blank">Set up Saints Email Self Service Password Reset</a></li>
+<li><a href="https://my.mhcc.edu/ICS/My_Courses/Academics_Homepage.jnz?portlet=Smarteval_Course_Evaluations">Course Evaluations</a></li>
+<li><a title="Student Scholarships" href="https://www.mhcc.edu/scholarships/">Student Scholarships</a></li>
+</ul></div></div></div>
+        
+        <div style="clear:both"></div>
+    
+</div></div>
+<div class="pColumnFoot pColumn2Foot containerFoot"></div></div><div class="PORTLETGRIDFoot containerFoot"></div></div>
+                <div class="portletsFoot containerFoot"></div>
+            </div>
+            <div class="mainLayoutFoot containerFoot"></div>
+        </div>
+        
+        
+<div id="footer">
+		<div id="footer-top">
+		<div id="social">
+		<ul class="socialIcons">
+            <li class="connectWithUs">Connect With Us:</li>
+            <li class="facebook"> <a href="http://www.facebook.com/mthoodcommunitycollege" title="facebook" target="_blank"></a> </li>
+            <li class="twitter"> <a href="https://twitter.com/MtHoodCommunity" title="twitter" target="_blank"></a> </li>
+            <li class="linkedIn"> <a href="http://www.linkedin.com/company/mt.-hood-community-college" title="linkedIn" target="_blank"></a> </li>
+        </ul>
+		</div>
+		</div>
+	<div id="footer-container">
+		<div class="footer-row">
+
+		<div class="footer-section">
+		<img src="Student%20Home%20%20%20My.mhcc.edu_files/logo_footer.png">	
+		  <p>26000 SE Stark Street <br>
+		  Gresham, Oregon 97030 <br>
+		  </p><p><a href="tel:5034916422">503-491-6422</a> <br>
+			</p></div>
+			<div class="footer-section">
+				<!-- <h3>Nav 1</h3> -->
+			<ul>
+				<li><a target="_blank" href="http://www.mhcc.edu/CampusDirectionsMaps/">Directions and Maps</a></li>
+				<li><a target="_blank" href="http://www.mhcc.edu/ParkingInformation/">Parking</a></li>
+				<li><a target="_blank" href="http://www.mhcc.edu/PublicSafety/">Campus Safety</a></li>
+				<li><a target="_blank" href="https://cm.maxient.com/reportingform.php?MtHoodCC&amp;layout_id=0">Incident Reporting</a></li>
+
+		  </ul>
+		 </div>
+		 			<div class="footer-section">
+				<!-- <h3>Nav 1</h3> -->
+			<ul>
+				<li><a target="_blank" href="http://www.mhcc.edu/ApplyingFinAid/">Apply for Financial Aid</a></li>
+				<li><a target="_blank" href="http://www.mhcc.edu/StudentScholarships/">Scholarship Information</a></li>
+				<!-- <li><a target="_blank" href="#">Student Jobs/Internships??</a></li> -->
+				
+		  </ul>
+		 </div>
+				<div class="footer-section">
+				<!-- <h3>Nav 1</h3> -->
+			<ul>
+				<li><a target="_blank" href="http://www.mhcc.edu/RegistrationCalendar/">Registration Calendar</a></li>
+				<li><a target="_blank" href="https://my.mhcc.edu/ICS/Schedule/Schedule_Search.jnz?portlet=Add%2fDrop_Courses_-_Course_Search">Class Search</a></li>
+				<li><a target="_blank" href="http://www.mhcc.edu/FinalsSchedule/">Finals Schedule</a></li>
+				
+		  </ul>
+		 </div>
+			 <div class="footer-section">
+				<!-- <h3>Nav 1</h3> -->
+			<ul>
+				<li><a target="_blank" href="http://www.mhcc.edu/SaintsPrint/">Printing Information</a></li>
+				<li><a target="_blank" href="http://www.mhcc.edu/SaintsEmail/">Email Information</a></li>
+				<li><a target="_blank" href="http://www.bookstore.mhcc.cc.or.us/">Bookstore Information</a></li>
+		  </ul>
+		 </div>
+			 <div class="footer-section">
+				<!-- <h3>Nav 1</h3> -->
+			<ul>
+				
+
+		  </ul>
+		 </div>
+		</div>
+	</div>
+	<!--<div id="footer-bottom">
+	
+		test content
+	</div> -->
+</div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() 
+{$get("_scriptManager_HiddenField").value = 
+'';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();var
+ gridToggleImagePath = '/ICS/ui/common/images/';//]]>
+</script>
+</form>
+    </div>
+
+
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span><span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span><div id="overlay" style="display: none;"></div><div id="lightbox" style="display: none;"><div id="outerImageContainer" style="width: 250px; height: 250px;"><div id="imageContainer"><img id="lightboxImage" alt="Lightbox Image"><div id="hoverNav"><a href="javascript://" id="prevLink"><span class="screenReaderText">Previous image</span></a><a href="javascript://" id="nextLink"><span class="screenReaderText">Next image</span></a></div><div id="loading"><a href="javascript://" id="loadingLink"><img src="/ICS/UI/Common/Images/PortletImages/Lightbox/loading.gif" alt="Loading image"></a></div></div></div><div id="imageDataContainer" class="clearfix" style="width: 250px;"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><a href="javascript://" id="bottomNavClose" title="close image gallery"><img src="/ICS/UI/Common/Images/PortletImages/Lightbox/closelabel.gif" alt="Close image"></a></div></div></div></div></body></html>

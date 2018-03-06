@@ -1,0 +1,1129 @@
+﻿/* --- MHCC--- */
+
+*/
+
+/*-----Brand Info -----*/
+/*
+    Blue: #212c49
+	yellow: #ffc93d
+	accent-blue:#96c8ff
+
+
+
+*/
+
+/*------entire site ----------*/
+body {
+
+}
+body * {
+
+	font-family: "Lato", sans-serif;
+	
+}
+a:link, a:visited {
+	color: #9d0404;
+	outline: none;
+	text-decoration: none;
+ }
+ a:focus, a:hover{
+ 	text-decoration:underline;
+ }
+ h1, h2, h3, h4, h5, h6 {
+	color: #484848;
+	cursor: default; }
+
+#PORTLETGRID
+{
+	*width: 99%;
+}
+
+
+/*-------Toolbar colors--------*/
+.adminMenu .actionsMenu a{
+	color: #9d0404 !important;
+    cursor: pointer;
+    padding: 0 0 14px 20px;
+    text-decoration: underline;
+}
+
+.portletSectionJump dd a, .portletSectionJump dd a:link, .portletSectionJump dd a:visited{
+	background: none repeat scroll 0 0 #d4d4d4;
+    color: #9d0404;
+    font-weight: bold;
+    padding: 4px 8px;
+    text-decoration: none;
+}
+/*---------------Logo Area--------------------*/
+#siteWrapper
+{
+	margin: 0 auto;
+	min-width: 960px!important;
+	/*max-width:1574px;*/
+}
+#masthead
+{
+	height: 160px;
+	min-width: 1080px!important; 
+	background-image: url('./images/MHCC-portal-background.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	 }
+#masthead h1
+{	background-image: url('./images/logo-text.png');
+	text-indent: -9999px;
+	display:inline-block;
+	float:left;
+	margin-left: 25px;
+	margin-top: 25px;
+	height: 112px;
+	width: 543px;
+	}
+#masthead a
+{
+    height: 100%;
+	display: block;
+
+}
+
+	#masthead label{
+	display: block;
+	
+}
+#loginBox{
+	min-width: 300px;
+	float: right;
+	background: #454545;
+	margin-top: 10px;
+	margin-right: 50px;
+	border-radius: 4px;
+	border: 1px solid #454545;
+}
+
+
+/*--------------Targeted Message--------*/
+
+#TargetedMessage{
+
+	margin: 0 auto;
+	text-align: center;
+}
+
+/*----------------Staff Search-------*/
+#DivStaff{
+    background: none repeat scroll 0 0 transparent;
+    color: #9d0404;
+    height: 100%;
+    margin-top: 0;
+    overflow: visible;
+    text-align: left;
+    word-wrap: normal;
+	}
+
+      
+/*---------------HeaderTabs (main menu)--------------------*/
+
+/*-------Lets reset a few things here -----------------*/
+#headerTabs ul, #headerTabs ul li, #headerTabs ul li.firstTab, #headerTabs ul li.selected, #headerTabs ul li.selected a
+{
+	color: #9a0000;
+	padding:0;
+	margin:0;
+	border:0;
+	background:transparent;
+	}
+#headerTabs
+{
+	background:#454545;
+	font-size:14px;
+	height:33px;
+	clear:both;
+	overflow:hidden;	
+	border-bottom: 3px solid #9d0404;
+	}
+#headerTabs ul li a
+{
+	color: #fff;
+	font-weight:bold;
+	font-size: 17px;
+}
+#headerTabs ul li:hover a{
+	color: #9a0000;
+	}
+}
+#headerTabs ul li.selected a{
+	color:#9a0000;
+
+}
+#headerTabs ul li, #headerTabs ul li.selected,  #headerTabs ul li.firstTab, #headerTabs ul li:hover
+{
+	padding: 7px 15px 0 15px;
+	display:block;
+	float:left;
+	height:21px;
+	background:#454545;
+	color: #fff;
+	/*border:1px solid #d5d5d5;
+	border-bottom:1px solid #ccc;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;*/
+
+}
+#headerTabs ul li:hover, #headerTabs ul li.selected a:hover, #headerTabs ul li a:hover, #headerTabs ul li.firstTab:hover, #headerTabs ul li.selected
+{
+	color:#9a0000;
+	background:#efefef;
+	text-decoration:none;
+	height:25px!IMPORTANT;
+
+}
+#headerTabs li.selected
+{
+	top:0;
+}
+#headerTabs ul li.selected
+{
+    font-size: 15px;
+    top: 0px;
+	border-bottom: none;
+}
+
+/*---------------More Dropdown--------------*/
+#headerTabs #moreList
+{
+	position:absolute;
+	z-index:50;
+	margin-left:-15px;
+	margin-top: 3px;
+	*margin-left:-54px;
+	*margin-top:20px;
+	clear:both;
+	list-style:none;
+
+	}
+#headerTabs ul li ul li
+{
+	float:left;
+	clear:both;!IMPORTANT
+	display:block;
+	width:100%;
+	*min-width:10%;
+	font-size:14px;
+	border-bottom:1px dashed #ccc;
+	background:#454545;
+	padding-bottom: 5px;
+}
+
+#headerTabs li#more
+{
+	background:url(images/more.png) right no-repeat;
+	padding-right:20px;
+	
+}
+#headerTabs li#more:hover{
+	background:#efefef;
+}
+
+#headerTabs ul li ul li.selected, #headerTabs ul li ul li:hover
+{
+	background:#efefef;
+	padding-bottom: 5px;
+}
+#headerTabs ul#moreList li a{
+	color: #fff;
+	background: transparent;
+}
+#headerTabs ul#moreList li:hover a, #headerTabs ul#moreList li.selected a{
+	color: #9a0000;
+	}
+
+
+/*---------------BreadCrumbs---------------*/
+#mainCrumbs
+{
+	/*display: none;*/
+	
+}
+#mainCrumbs a, #mainCrumbs a:link, #mainCrumbs a:visited
+{
+	color:#9d0404;
+}
+
+/*---------------The Dreaded Side Bar-------------*/
+/*------------ Reset some things to no backgrounds and no borders --*/
+#globalLinks{
+	margin-left: 20px;
+
+}
+#userWelcome li ~ li {
+border-left: 1px solid #fff;
+
+}
+
+
+#pagePortlets  li a, #pagePortlets  li a:link, #pagePortlets  li a:visited { 
+	color: #9d0404; 
+	text-decoration: none; 
+	} 
+
+#pagePortlets li a:hover {text-decoration: none;}
+
+#pagePortlets .selected {
+  background:transparent;
+  }
+
+#pagePortlets
+{
+    display:none;
+}
+#pagePortlets li
+{
+	display:block;
+	margin-left:-25px;
+}
+
+#sideBar div.sideSection, #pagePortlets li, #contextPages, #contextPages li, #contextPages li.currentPage, #sideBar li.addPage, #sideBar div#quickLinks
+{
+	background:none;
+	background:transparent;
+	border:0;
+	list-style:none;
+}
+#sideBar h2, #sideBar h2 a, #sideBar h2 a:link, #sideBar h2 a:visited, #sideBar div#thisContext h2, #sideBar div#thisContext h2 a, #sideBar div#thisContext h2 a:link
+{
+	
+	color: #222 !important;
+	background:transparent;
+	border:0;
+	}
+#sideBar h2, #sideBar h2 a, #sideBar h2 a:link, #sideBar h2 a:visited, #sideBar h3, #sideBar h3 a, #sideBar h3 a:link, #sideBar h3 a:visited, #sideBar div#quickLinks h3
+{
+	font-family: "Arvo", sans-serif;
+	color: #484848;
+	background:transparent;
+	border:0;
+	}
+	
+	
+	
+	
+
+ #contextPages li a, #contextPages li a:link, #contextPages li a:visited
+{
+	color:#222 ;
+} 	
+ #contextPages li.currentPage{
+	background: #c1c1c1;
+	}
+#contextPages li.currentPage a{
+
+	color: #9d0404;
+}
+
+#contextPages li.currentPage ul#pagePortlets li a{
+	color: #222;
+
+}
+#contextPages li.currentPage ul#pagePortlets li a.selected{
+	color: #9d0404;
+}
+
+
+
+
+
+
+/* Start the styling */
+/*---------------Welcome Back (login) bar--------------------*/
+#welcomeBackBar div#userWelcome
+{
+    width:auto;
+    color:#fff;
+}
+#welcomeBackBar #userLogin label
+{
+    color:#fff;
+	font-size: 100%;
+	display:inline-block;
+}
+#welcomeBackBar #userLogin label[for="userName"]{
+margin-left: 3px;
+margin-top: 5px;
+width: 42%;
+}
+#welcomeBackBar #userLogin label[for="password"]{
+margin-top: 5px;
+width: 25%;
+}
+#welcomeBackBar #lnkForgot{
+
+display: inline;
+}
+
+#userWelcome .message
+{
+    display:none;
+}
+#welcomeBackBar
+{
+   	background:transparent;
+	color:#822433;
+	overflow: visible;
+    text-align:left;
+    word-wrap:normal;
+    height:100%;
+}
+
+#welcomeBackBar #userLoginBox{
+	display: block;
+	
+	}
+
+#welcomeBackBar #userLogin, #welcomeBackBar #userWelcome
+{
+    text-align:left !Important;
+    word-wrap:normal;
+    word-break:normal;
+}
+#welcomeBackBar input
+{
+	border: 1px solid #ccc;
+	color: #1E1E1E;
+	font-weight:bold;
+}
+#welcomeBackBar #btnLogin
+{
+	background: #e50505;
+	color:#fff;
+	font-weight:bold;
+	border: 1px solid #e50505;
+	font-size: 14px;
+	}
+
+#welcomeBackBar a, #welcomeBackBar a:link, #welcomeBackBar a:visited
+{
+	color: #fff;
+	font-style: italic;
+}
+#userWelcome ul, #userWelcome li,
+#welcomeBackBar #userLogin,
+#welcomeBackBar #userWelcome 
+{
+    clear: both;
+    display: inline-block;
+    padding-right: 4px;
+    text-align: left;
+
+}
+
+#welcomeBackBar .searchButton, #masthead .searchButton
+{
+    background-image:url(images/icon-magnifying-glass.png);
+    background-repeat:no-repeat;
+    background-position-y:center;
+    background-position-x:left;
+    margin-left:5px;
+    margin-right: 5px;
+    margin-top: 1px;
+    width:16px;
+	height: 16px;
+	display: inline-block;
+	float: right;
+}
+
+#masthead .searchControls {
+	background: #fff;
+	height: 25px;
+	width:78%;
+	border-radius: 4px;
+	margin: 10px 0px 10px 9px;
+	}
+#masthead .searchControls input{
+	width:75%;
+	border: none;
+	margin: 0 auto;
+	right: -3px;
+	margin-top: 4px;
+	height: 20px;
+	}
+#masthead .searchControls input:focus, #masthead .searchControls textarea:focus{
+
+	outline: none;
+
+}
+
+
+#masthead .advancedSearchLink
+{
+    
+}
+#masthead .searchButton:active, #masthead .searchButton:hover
+{
+       background-position-y:center;
+    background-position-x:left;
+}
+
+div[id*='divSideBarAdvancedOptions']
+{
+    padding:10px;
+    padding-top:0;
+    color:#fff;
+}
+#masthead .advancedSearchLink, #masthead .advancedSearchLink a, #masthead .advancedSearchLink a:visited, #masthead .advancedSearchContent
+{
+    color: #fff;
+}
+
+/*-- General Sidebar -- */
+
+
+#sideBar div.sideSection, #sideBar div#quickLinks 
+{
+	background:#efefef;
+
+   /* border: 1px solid #888888;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;*/
+	width:99%;
+	padding-top:1px;
+}
+
+#sideBar div#quickLinks 
+{
+	background:#efefef;
+
+}
+
+#sideBar
+{
+	width:13%;
+	min-height:380px;
+    margin-right:0;
+	margin-top: 10px;
+    padding-right:1%;
+
+}
+#thisContext a, #thisContext a:link, #thisContext a:visited
+{
+	color:#484848;
+	text-decoration:none;
+}
+#sideBar a, #sideBar a:link, #sideBar a:visited
+{
+	color: #9d0404 ;
+	text-decoration:none;
+}
+#sideBar a:hover
+{
+	text-decoration:underline;
+}
+#sideBar h2, #sideBar div#quickLinks h3
+{
+	margin:10px 10px 5px 15px;
+	font-size:16px;
+}
+#sideBar label
+{
+    float: none;
+    display:block;
+}
+#contextPages li
+{
+	padding: 5px 0 5px 20px;
+	color:#9d0404;
+	font-size:14px;
+	border-bottom: 1px dotted #fff;
+}
+#pagePortlets li:hover{
+	background: #ccc;
+
+}
+/*#contextPages li{
+  -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #aaaaaa;
+    border-color: #aaaaaa;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    font-size: 85%;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 0 3px 7px;
+	}
+*/
+
+
+#manageLinks li
+{
+	padding: 5px 0 5px 15px;
+	clear: both;
+}
+#pagePortlets
+{
+	
+}
+/* this looks silly but it's set individually in the base style so we have to override each one */
+#sideBar,
+#sideBar .manageGroup a,
+#sideBar .manageGroup a:link,
+#sideBar .manageGroup a:visited {
+  color: #484848 ;
+  min-width:140px
+
+  }
+
+#sideBar .addPage a,
+#sideBar .addPage a:link,
+#sideBar .addPage a:visited {
+  color: #9d0404;
+  }
+#sideBar .manageContext a,
+#sideBar .manageContext a:link,
+#sideBar .manageContext a:visited {
+  color: #9d0404;
+  }
+  
+#sideBar .usageStats a,
+#sideBar .usageStats a:link,
+#sideBar .usageStats a:visited {
+  color: #9d0404;
+}
+ 
+#sideBar #subContexts li { 
+    padding-left: 15px;
+}
+
+#sideBar #subContexts a {
+	background-position: 0 3px;
+	margin: 0 0 7px;
+	font-weight:bold;
+	font-size:14px;
+	float: left;
+	clear: both;
+	width: 90%;
+}
+
+#quickLinks dl
+{
+	padding-left:15px;
+}
+#quickLinks li
+{
+	padding-left: 10px;
+}
+
+#xpndPrtlts{
+	background: url(../../../ICS/UI/Common/images/plus.gif) 2px 2px no-repeat;
+	display: block;
+	float: right!important;
+	height: 12px!important;
+	overflow: hidden!important;
+	text-indent: 1000px;
+	width: 16px!important;
+}
+#xpndPrtlts.expanded {
+	background: url(../../../ICS/UI/Common/images/minus.gif) 2px 2px no-repeat;
+}
+/*--------------Portlet area--------------*/
+.pColumn {
+	margin-right: 1%;
+	/*background: url(images/contentBg.gif) repeat-x;*/
+
+}
+#pageTitle h2{
+
+
+}
+#pageTitleButtons
+{
+    margin-top: -35px;
+    margin-right: 0;
+    background: #B0B1A6;
+    border:1px solid #888888;
+}
+.side_by_side_with_header .pColumn1
+{
+    width: 100%;
+    margin-right:0;
+}
+.side_by_side_with_header .pColumn2, .side_by_side_with_header .pColumn3
+{
+    width:50%;
+    margin-right:0;
+}
+#pageTitle {
+
+    width: 99%;
+    margin: 20px 0 7px; 
+}
+#pageTitle h2 #contextName {
+    font-size: 180%;
+}
+
+#pageTitle h2 a, #pageTitle h2 a:link, #pageTitle h2 a:visited
+{
+	font-family: "Arvo", sans-serif;
+	color:#333;
+	font-weight:900;
+	display: none;
+}
+a.imageAndText span
+{
+	text-decoration:none;
+}
+#portlets
+{
+	width:80%;
+    /*margin-left:0;
+    padding-right:0;*/
+}
+.pShortcut {
+    background-color: #F3F3F3; 
+    border: 0 none;
+	float: right;
+	margin-right: 5px;
+}
+.portlet
+{
+	border: 1px solid #ccc;
+	clear:both;
+	border-radius: 4px;
+}
+/*.pHead h3{
+	height:auto;
+	
+}
+.pHead
+{
+	color:#333;
+	background: transparent;
+	border-bottom:1px solid #b0b1a6;
+	font-size:16px;
+	padding:5px 0px 5px 10px;
+	 border-radius: 4px; 
+	
+} */
+.pHead h3{
+	height:auto;
+	color:#fff;
+	font-size:16px;
+	margin:0px;
+	padding:5px 10px;
+	text-align: left;
+	background: #af1212;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #af1212 0%, #870202 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#af1212), color-stop(100%,#870202));
+  background: -webkit-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: -o-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: -ms-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: linear-gradient(to bottom, #af1212 0%,#870202 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af1212', endColorstr='#870202',GradientType=0 );
+}
+.pHead
+{
+    padding:20px;
+	/*border-bottom:2px solid #9d0404;*/
+	font-size:16px;
+	padding:0px;
+	filter: none;
+    background: transparent; /* Old browsers */
+	}
+
+.pHead div {
+	right: 12px;
+	margin-top: -.2em;
+		}
+
+.pHead, .pHead a, .pHead a:link, .pHead a:visited 
+{
+   
+    color: #9d0404;
+    text-decoration:none;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.pHead a, .pHead a:link, .pHead a:visited
+{
+	color:#fff;
+	text-decoration:none;
+}
+.pHead a:hover{
+	color:#fff;
+}
+
+.pHead img { 
+    margin-top: 0.7em;
+}
+
+.buttonBar
+{
+	background:#f3f3f3;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	padding:4px;
+	text-align: right; 
+    font-size: 85%;
+}
+.pt_CustomContentPortlet h4
+{
+	background:#f3f3f3;
+	padding:9px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	color:#9d0404;
+	margin: 10px auto 0 auto;
+}
+h4
+{
+	background:#b0b1a6;
+	padding:9px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	color:#9d0404;
+	margin: 10px auto 0 auto;
+}
+.pToolbar
+{
+	background:#b0b1a6;
+	height:20px;
+}
+.pToolbar ul li
+{
+	height:20px;
+}
+.pToolbar,
+.pToolbar ul,
+.pToolbar a,
+.pToolbar a:link,
+.pToolbar a:visited,
+.pToolbar .pTool,
+.pToolbar .menu a.hasKids,
+.pToolbar .menu a,
+.pToolbar .menu a:link,
+.pToolbar .menu a:visited {
+  background-color: #b0b1a6;
+  border-color: #fff;
+  color: #9d0404;
+  } 
+/*----------------Calendar-----------------*/
+.cal {  }
+ 
+	.cal . {  }
+ 
+	.cal span {  }
+ 
+	.cal img {  }
+ 
+	.cal iframe {  }
+ 
+	.cal .time {  }
+ 
+	.cal select {  }
+ 
+ul.dayOfWeek, ul.dayOfWeek li {  }
+
+div#calSideBar { 
+    background-color: #F3F3F3; 
+    padding: 4px; 
+    border-radius: 4px;
+}
+
+#calSideBar { background: none; }
+ 
+	#calSideBar li {
+		background: none;
+		clear: both;
+		display: block;
+		margin: 10px 0; }
+ 
+	#calSideBar h3 {
+		background: none;
+		border-bottom: 1px solid #d2d2d2;
+		text-align: left; }
+ 
+	#calSideBar hr {
+		border-bottom: 1px solid #d2d2d2;
+		border: none;
+		padding: 0; }
+ 
+#calEventListView p {
+	font-weight: bold
+	padding: 0 10px; }
+ 
+#calWeekView a, #calDayView a, #calMonthView a, #calEventListView a {
+	display: block;
+	font-weight: normal;
+	padding: 0 10px 10px 10px;
+	text-decoration: none!important; }
+ 
+#calWeekView a:hover,  #calDayView a:hover, #calMonthView a:hover, #calEventListView a:hover { text-decoration: underline!important; }
+ 
+#calWeekView table { border: none; }
+ 
+#calWeekView td {
+	border: none;
+	padding: 5px;
+	width: 50%; }
+ 
+#calEventListView a { padding: 0 0 10px 0; }
+ 
+.calDayNumber { background: #CEDBE9; }
+ 
+.calBlankDay { background: none!important; }
+ 
+#calMonthView ul, #calMonthView li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-indent: 0; }
+ 
+.evHeader a {
+	border-bottom: 1px solid #d2d2d2;
+	padding-bottom: 0!important; }
+ 
+.hourHead, .allDayHead {
+	border: none!important;
+	padding: 10px; }
+ 
+.allDay {
+	-khtml-border-radius: 4px!important;
+	-moz-border-radius: 4px!important;
+	-o-border-radius: 4px!important;
+	-webkit-border-radius: 4px!important;
+	background: #CEDBE9;
+	border-radius: 4px!important;
+	border: none!important; }
+ 
+	.allDay a { font-size: 80%; }
+ 
+.topHour { border-top-color: #333333!important; }
+ 
+.bottomHour { border-bottom-color: #333333!important; }
+ 
+#calHeader a { display: inline!important; }
+ 
+#calDefaultView a { padding: 0 }
+ 
+#calDefaultView {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: #ccc;
+	padding: 3px; }
+ 
+table[id*=calMain], #pg0_V_calMain {
+	background: none!important;
+	border: none!important; }
+ 
+td.calDayStyle {
+	background: none;
+	padding: 2px; }
+ 
+.calTitleStyle  td { background: none; }
+/*--------------- End Calendar---------------*/
+/** NEW FOOTER **/
+
+
+/*--------------Custom Footer -------------*/
+
+ #footer {
+
+ width: 100%;
+min-width: 960px;
+background: #af1212;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #af1212 0%, #870202 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#af1212), color-stop(100%,#870202));
+  background: -webkit-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: -o-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: -ms-linear-gradient(top, #af1212 0%,#870202 100%);
+  background: linear-gradient(to bottom, #af1212 0%,#870202 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af1212', endColorstr='#870202',GradientType=0 );
+height: auto;
+margin: 0 auto;
+}
+#footer h3{
+	font-size: 17px;
+	margin: 0;
+}
+#footer a{
+	color: #fff;
+}
+#footer-container{
+	min-width:960px;
+	max-width:1200px;
+	margin: 0 auto;
+	clear: both;
+}
+#footer-top{
+	background: #9e2926;
+	width: 100%;
+	height: 55px;
+	padding: 10px 0px 5px 0px;
+}
+#footer-bottom{
+  background: #333837;
+  padding: 15px 0 5px 0;
+  -webkit-box-shadow: inset 0px 7px 9px 0px rgba(36,41,41,1);
+  -moz-box-shadow: inset 0px 7px 9px 0px rgba(36,41,41,1);
+  box-shadow: inset 0px 7px 9px 0px rgba(36,41,41,1);
+}
+#social{
+	min-width: 960px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+#footer #social ul.socialIcons{
+	margin-left: 150px;
+	
+}
+#footer #social ul li{
+	display: inline-block;
+	margin-right: 30px;
+	list-style-type: none;
+	vertical-align: middle;
+
+}
+#footer #social ul li a{
+	display: inline-block;
+	height:33px;
+	width: 33px;
+		background: url('./images/sprites.png');
+}
+#footer #social ul li.connectWithUs{
+	color: #fff;
+	font-size: 18px;
+}
+#footer #social ul li.facebook a{
+	background-position: -138px -37px;
+}
+#footer #social ul li.facebook a:hover{
+	background-position: -169px -110px;
+}
+#footer #social ul li.twitter a{
+	background-position: -174px -37px;
+}
+#footer #social ul li.twitter a:hover{
+	background-position: -205px -110px;
+}
+#footer #social ul li.linkedIn a{
+	background-position: -208px -37px;
+}
+#footer #social ul li.linkedIn a:hover{
+	background-position: -239px -110px;
+}
+
+
+
+.footer-row{
+	min-height: 170px;
+	margin-left: 150px;
+	padding: 25px 0px;
+	}
+
+#footer .footer-section{
+	width: 17%;
+	float: left;
+	margin: 0px 10px 0px 10px;
+	text-align: center;
+}
+#footer h3{
+	font-size: 17px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-weight: 700;
+	line-height: 1.1;
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+}
+#footer ul{
+	list-style-type: none;
+	padding: 0;
+	margin-bottom:20px;
+}	
+#footer ul li{
+	margin: 5px 0;
+	font-size:18px;
+}
+ #footer .social .fa{
+	font-size: 16px;
+	width: 30px;
+ }
+#footer h4{
+	font-size: 17px;
+	margin: 0;
+	background: none;
+	color: #333;
+	font-weight: 500;
+	padding: 0;
+	}
+#footer p{
+	margin-bottom: 10px;
+	margin-top: 0px;
+	padding: 0;
+	color: #fff;
+}
+
+/*Default FOOTER*/
+/*---------------Footer--------------------*/
+#foot
+{
+	background:transparent;
+	border-top: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	padding-bottom:5px;
+	margin-bottom:20px;
+    width:100%;
+}
+#foot a, #foot a:link, #foot a:visited
+{
+	color:#666666;
+	text-decoration:none;
+	padding:0;
+	padding-right:15px;
+}
+#policies, #copyright
+{
+margin: 0 auto;
+float: left;
+visibility: hidden;
+}
+/*--------------------------------------------------
+  :: Quick Links
+  ------------------------------------------------*/
+	#quickLinkswrap {
+	width: 99%;
+	color: #484848;
+	background:#e5e5e5;
+	border:0;
+	}
+  #quickLinkswrap div#quickLinks{
+	display: none;
+  }
+  #sideBar div#quickLinksexpander h3
+  {
+  	margin:10px 10px 5px 15px;
+	font-size:16px;
+	border-bottom: 1px solid #fff;
+	cursor: pointer;
+	color: #bb8d0b !important;
+  }
+#errorMessage{
+	display: block;
+	margin: 6px 10px 0 10px;
+	color: red;
+	font-size: 20px;
+}
+	 

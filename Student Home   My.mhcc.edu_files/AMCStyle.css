@@ -1,0 +1,171 @@
+﻿
+
+
+.hoverRow{background-color:#c4df9b}
+.trDefault
+{
+	background-color:#fff;
+}
+.trHighlight
+{
+	background-color:#c4df9b;
+}
+.altGrid
+{
+	background-color:#eee;
+}
+.schedDayTitle
+{
+	background-color:#bababa;
+	color:#ffffff;
+	text-align:center;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#717171;
+    border-bottom-width:1px;
+    border-top-style:solid;
+    border-top-color:#717171;
+    border-top-width:1px;
+    height:20px;
+}
+.activeTimeBlock
+{
+	background-color:#326d98;
+	color:#ffffff;
+	font-size:10px;
+	height:13px;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#326d98;
+    border-bottom-width:1px;
+}
+
+.activeTimeBlockHourLine
+{
+	background-color:#326d98;
+	color:#ffffff;
+	font-size:10px;
+	height:13px;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#29648f;
+    border-bottom-width:1px;
+}
+
+.activeTimeBlockOverlap
+{
+	background-color:#195b8c;
+	color:#ffffff;
+	font-size:10px;
+	height:13px;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#195b8c;
+    border-bottom-width:1px;
+}
+
+.activeTimeBlockHourLineOverlap
+{
+	background-color:#195b8c;
+	color:#ffffff;
+	font-size:10px;
+	height:13px;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#29648f;
+    border-bottom-width:1px;
+}
+
+.bottomDays
+{
+	border-bottom-style:solid;
+    border-bottom-color:#717171;
+    border-bottom-width:1px;
+    border-left-style:solid;
+    border-left-color:#717171;
+    border-left-width:1px;
+    border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+}
+
+.activeTimeBlockHighlight
+{
+	background-color:#c4df9b;
+	color:#000000;
+	font-size:10px;
+	height:13px;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;    
+    border-bottom-style:solid;
+    border-bottom-color:#c4df9b;
+    border-bottom-width:1px;
+}
+.inactiveBlock
+{
+	height:13px;
+	background-color:#dcdcdc;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+}
+.inactiveBlockEnd
+{
+	height:13px;background-color:#dcdcdc;
+	border-bottom-style:solid;
+    border-bottom-color:#ffffff;
+    border-bottom-width:1px;
+    border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+}
+.hourColLeft
+{
+	background-color:#ebebeb;color:#b7b7b7;text-align:center;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+}
+.hourColLeftEnd
+{
+	background-color:#ebebeb;color:#b7b7b7;text-align:center;
+	border-right-style:solid;
+    border-right-color:#717171;
+    border-right-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#ffffff;
+    border-bottom-width:1px;
+}
+.hourColRight
+{
+	background-color:#ebebeb;color:#b7b7b7;text-align:center;
+}
+.hourColRightEnd
+{
+	background-color:#ebebeb;color:#b7b7b7;text-align:center;
+	border-bottom-style:solid;
+    border-bottom-color:#ffffff;
+    border-bottom-width:1px;
+}
+.disabled
+{
+	color:Gray;
+}
+
+.amcInactiveSched
+{
+    color: gray;
+}
+
+.amcActiveSched{}
